@@ -1,4 +1,4 @@
-import {Factory} from 'ember-cli-mirage';
+import { Factory } from 'ember-cli-mirage';
 import moment from 'moment';
 
 export default Factory.extend({
@@ -11,5 +11,5 @@ export default Factory.extend({
   },
   buildNumber(i) {
     return i + 1;
-  }
+  },
 });

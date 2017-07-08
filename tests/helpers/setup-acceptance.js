@@ -4,13 +4,8 @@ import destroyApp from 'percy-web/tests/helpers/destroy-app';
 
 // Import mocha helpers so that they will be included for all tests.
 /*eslint no-unused-vars: ["error", { "varsIgnorePattern": "it|describe" }]*/
-import {
-  describe,
-  it,
-  beforeEach,
-  afterEach
-} from 'mocha';
-import {expect} from 'chai';
+import { describe, it, beforeEach, afterEach } from 'mocha';
+import { expect } from 'chai';
 
 export default function setupAcceptance() {
   beforeEach(function() {
@@ -37,7 +32,7 @@ export default function setupAcceptance() {
 // See https://github.com/emberjs/ember.js/issues/12791
 export function renderAdapterErrorsAsPage(callbackThatReturnsAPromise) {
   let adapterException = Ember.Test.adapter.exception;
-  Ember.Test.adapter.exception = (error) => {
+  Ember.Test.adapter.exception = error => {
     if (error.isAdapterError) {
       Ember.Logger.info('Rendering exception:', error, ' as application error page');
       return null;
@@ -45,11 +40,10 @@ export function renderAdapterErrorsAsPage(callbackThatReturnsAPromise) {
       return adapterException(error);
     }
   };
-  return callbackThatReturnsAPromise().
-    finally(() => {
-      Ember.Test.adapter.exception = adapterException;
-      adapterException = null;
-    });
+  return callbackThatReturnsAPromise().finally(() => {
+    Ember.Test.adapter.exception = adapterException;
+    adapterException = null;
+  });
 }
 
 // sets up the session, the createData should set create mirage models.
@@ -66,12 +60,12 @@ export function renderAdapterErrorsAsPage(callbackThatReturnsAPromise) {
 export function setupSession(createData) {
   beforeEach(function() {
     createData.bind(this)(server);
-    if ((this.loginUser === undefined) && (server.schema.users.all().models.length === 1)) {
+    if (this.loginUser === undefined && server.schema.users.all().models.length === 1) {
       this.loginUser = server.schema.users.first();
     }
     expect(this.loginUser).not.to.be.undefined; // eslint-disable-line no-unused-expressions
     if (this.loginUser) {
-      this.loginUser.update({_currentLoginInTest: true});
+      this.loginUser.update({ _currentLoginInTest: true });
     }
   });
   afterEach(function() {

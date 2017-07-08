@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-expressions */
-import {expect} from 'chai';
-import {it, describe} from 'mocha';
-import {setupTest} from 'ember-mocha';
+import { expect } from 'chai';
+import { it, describe } from 'mocha';
+import { setupTest } from 'ember-mocha';
 
 describe('SubscriptionDataService', function() {
   setupTest('service:subscription-data');

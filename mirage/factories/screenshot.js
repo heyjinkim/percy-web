@@ -1,4 +1,4 @@
-import {Factory} from 'ember-cli-mirage';
+import { Factory } from 'ember-cli-mirage';
 
 export default Factory.extend({
   afterCreate(screenshot, server) {
@@ -6,9 +6,9 @@ export default Factory.extend({
       let image = server.create('image', {
         url: '/images/test/bs-base.png',
         width: 1280,
-        height: 1485
+        height: 1485,
       });
-      screenshot.update({image});
+      screenshot.update({ image });
     }
     if (screenshot.lossyImage === null) {
       let lossyImage = server.create('image', {
@@ -16,7 +16,7 @@ export default Factory.extend({
         width: 900,
         height: 1044,
       });
-      screenshot.update({lossyImage});
+      screenshot.update({ lossyImage });
     }
-  }
+  },
 });

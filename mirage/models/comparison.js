@@ -1,4 +1,4 @@
-import {Model, belongsTo} from 'ember-cli-mirage';
+import { Model, belongsTo } from 'ember-cli-mirage';
 
 export default Model.extend({
   build: belongsTo('build'),
@@ -6,5 +6,5 @@ export default Model.extend({
   headScreenshot: belongsTo('screenshot'),
   baseScreenshot: belongsTo('screenshot'),
   headSnapshot: belongsTo('snapshot'),
-  baseSnapshot: belongsTo('snapshot')
+  baseSnapshot: belongsTo('snapshot'),
 });

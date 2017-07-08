@@ -2,7 +2,7 @@ import Ember from 'ember';
 import DS from 'ember-data';
 
 export default DS.Model.extend({
-  diffImage: DS.belongsTo('image', {async: false}),
+  diffImage: DS.belongsTo('image', { async: false }),
   diffRatio: DS.attr('number'),
   createdAt: DS.attr('date'),
   updatedAt: DS.attr('date'),

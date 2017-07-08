@@ -8,8 +8,8 @@ const ROLE_ID_TO_TITLE = {
 };
 
 export default DS.Model.extend({
-  organization: DS.belongsTo('user', {async: false}),
-  user: DS.belongsTo('user', {async: false, inverse: null}),
+  organization: DS.belongsTo('user', { async: false }),
+  user: DS.belongsTo('user', { async: false, inverse: null }),
   role: DS.attr(),
 
   roleTitle: Ember.computed('role', function() {

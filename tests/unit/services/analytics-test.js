@@ -1,11 +1,11 @@
 /* eslint-disable no-unused-expressions */
-import {expect} from 'chai';
-import {it, describe} from 'mocha';
-import {setupTest} from 'ember-mocha';
+import { expect } from 'chai';
+import { it, describe } from 'mocha';
+import { setupTest } from 'ember-mocha';
 
 describe('AnalyticsService', function() {
   setupTest('service:analytics', {
-    needs: ['service:session', 'service:adminMode']
+    needs: ['service:session', 'service:adminMode'],
   });
 
   // Replace this with your real tests.

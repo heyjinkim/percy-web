@@ -6,7 +6,7 @@ export default Ember.Component.extend({
   redirectTo: null,
 
   tagName: 'a',
-  href: utils.buildApiUrl('login', {params: {extended_permissions: 1}}),
+  href: utils.buildApiUrl('login', { params: { extended_permissions: 1 } }),
   classNames: [
     'LoginExtendedButton',
     'Button',
@@ -15,15 +15,13 @@ export default Ember.Component.extend({
     'hint--rounded',
     'hint--centered',
   ],
-  classNameBindings: [
-    'classes',
-  ],
+  classNameBindings: ['classes'],
   click() {
     this.send('login');
   },
   actions: {
     login() {
-      var options = {extendedPermissions: 1};
+      var options = { extendedPermissions: 1 };
       if (this.get('redirectTo')) {
         options['redirectTo'] = this.get('redirectTo');
       }

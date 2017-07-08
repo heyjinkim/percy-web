@@ -7,7 +7,9 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
   model() {
     let organization = this.modelFor('organizations.organization');
     let includes = 'subscription.current-usage-stats';
-    return this.store.findRecord('organization', organization.id, {include: includes});
+    return this.store.findRecord('organization', organization.id, {
+      include: includes,
+    });
   },
   actions: {
     didTransition() {
@@ -15,5 +17,5 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
       let organization = this.modelFor('organizations.organization');
       this.analytics.track('Billing Viewed', organization);
     },
-  }
+  },
 });

@@ -1,15 +1,15 @@
-import {JSONAPISerializer} from 'ember-cli-mirage';
+import { JSONAPISerializer } from 'ember-cli-mirage';
 
 export default JSONAPISerializer.extend({
   include: ['subscription'],
   links(organization) {
     return {
-      'projects': {
-        related: `/api/v1/organizations/${organization.slug}/projects`
+      projects: {
+        related: `/api/v1/organizations/${organization.slug}/projects`,
       },
-      'subscription': {
-        related: `/api/v1/organizations/${organization.slug}/subscription`
-      }
+      subscription: {
+        related: `/api/v1/organizations/${organization.slug}/subscription`,
+      },
     };
-  }
+  },
 });

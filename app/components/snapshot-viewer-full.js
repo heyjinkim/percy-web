@@ -24,7 +24,7 @@ export default Ember.Component.extend({
     this._super(...arguments);
 
     // Autofocus component for keyboard navigation
-    this.$().attr({tabindex: 1});
+    this.$().attr({ tabindex: 1 });
     this.$().focus();
   },
   actions: {
@@ -35,7 +35,8 @@ export default Ember.Component.extend({
       this.set('selectedComparison', comparison);
       this.set('snapshotSelectedWidth', value);
 
-      this.sendAction('transitionRouteToWidth',
+      this.sendAction(
+        'transitionRouteToWidth',
         this.get('snapshot'),
         value,
         this.get('comparisonMode')

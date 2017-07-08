@@ -1,7 +1,6 @@
 import Ember from 'ember';
 import config from '../config/environment';
 
-
 export default Ember.Component.extend({
   organization: null,
   planId: null,
@@ -21,16 +20,13 @@ export default Ember.Component.extend({
   classes: null,
   attributeBindings: ['href'],
   tagName: 'button',
-  classNames: [
-    'StripeCheckout',
-    'Button',
-  ],
+  classNames: ['StripeCheckout', 'Button'],
   classNameBindings: ['classes'],
 
   loadStripeCheckout: Ember.on('willInsertElement', function() {
     if (!window.StripeCheckout) {
       var scriptEl = document.createElement('script');
-      scriptEl.setAttribute('src','https://checkout.stripe.com/checkout.js');
+      scriptEl.setAttribute('src', 'https://checkout.stripe.com/checkout.js');
       // https://stripe.com/blog/checkout-in-more-languages
       scriptEl.setAttribute('data-locale', 'auto');
       scriptEl.setAttribute('data-allow-remember-me', 'false');
@@ -48,7 +44,7 @@ export default Ember.Component.extend({
 
     // Get or create the plan record with the right ID.
     let plan = this.get('store').peekRecord('plan', planId);
-    plan = plan || this.get('store').createRecord('plan', {id: planId});
+    plan = plan || this.get('store').createRecord('plan', { id: planId });
 
     let savingPromise = subscriptionService.changeSubscription(organization, plan, token);
     if (this.get('changingSubscription')) {
@@ -79,13 +75,16 @@ export default Ember.Component.extend({
       }
 
       if (this.get('updateCard') || this.get('organization.subscription.isTrialOrFree')) {
-        this.set('handler', window.StripeCheckout.configure({
-          key: config.APP.STRIPE_PUBLISHABLE_KEY,
-          image: '/images/touch-icon.png',
-          token(token) {
-            self._changeSubscription(chosenPlanId, token);
-          }
-        }));
+        this.set(
+          'handler',
+          window.StripeCheckout.configure({
+            key: config.APP.STRIPE_PUBLISHABLE_KEY,
+            image: '/images/touch-icon.png',
+            token(token) {
+              self._changeSubscription(chosenPlanId, token);
+            },
+          })
+        );
         this.get('handler').open({
           name: 'Percy.io',
           description: 'Subscription to ' + planName + ' plan',

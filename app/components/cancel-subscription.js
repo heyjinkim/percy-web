@@ -10,12 +10,8 @@ export default Ember.Component.extend({
 
   subscriptionService: Ember.inject.service('subscriptions'),
   tagName: 'button',
-  classNames: [
-    'Button',
-  ],
-  classNameBindings: [
-    'classes',
-  ],
+  classNames: ['Button'],
+  classNameBindings: ['classes'],
   click() {
     let organization = this.get('organization');
     let eventProperties = {
@@ -25,9 +21,13 @@ export default Ember.Component.extend({
 
     // Get or create the plan record with the right ID.
     let plan = this.get('store').peekRecord('plan', 'free');
-    plan = plan || this.get('store').createRecord('plan', {id: 'free'});
+    plan = plan || this.get('store').createRecord('plan', { id: 'free' });
 
-    if (!confirm('Are you sure you want to cancel?\n\nWe want to help if we can, just email us at hello@percy.io.')) {
+    if (
+      !confirm(
+        'Are you sure you want to cancel?\n\nWe want to help if we can, just email us at hello@percy.io.'
+      )
+    ) {
       return;
     }
     let savingPromise = this.get('subscriptionService').changeSubscription(organization, plan);

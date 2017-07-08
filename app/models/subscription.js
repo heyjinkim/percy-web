@@ -3,10 +3,10 @@ import DS from 'ember-data';
 import moment from 'moment';
 
 export default DS.Model.extend({
-  organization: DS.belongsTo('organization', {async: false}),
-  plan: DS.belongsTo('plan', {async: false}),
+  organization: DS.belongsTo('organization', { async: false }),
+  plan: DS.belongsTo('plan', { async: false }),
   billingEmail: DS.attr(),
-  currentUsageStats: DS.belongsTo('usage-stat', {async: false}),
+  currentUsageStats: DS.belongsTo('usage-stat', { async: false }),
   status: DS.attr(),
   currentPeriodStart: DS.attr('date'),
   currentPeriodEnd: DS.attr('date'),
@@ -27,4 +27,3 @@ export default DS.Model.extend({
     return Math.round(moment(this.get('trialEnd')).diff(moment(), 'days', true));
   }),
 });
-

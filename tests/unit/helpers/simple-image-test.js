@@ -1,7 +1,7 @@
 import Ember from 'ember';
-import {expect} from 'chai';
-import {describe, it} from 'mocha';
-import {simpleImageHelper} from 'percy-web/helpers/simple-image';
+import { expect } from 'chai';
+import { describe, it } from 'mocha';
+import { simpleImageHelper } from 'percy-web/helpers/simple-image';
 
 describe('simple-image helper', function() {
   it('renders image tag', function() {
@@ -10,10 +10,10 @@ describe('simple-image helper', function() {
       width: 100,
       height: 200,
     });
-    let html = simpleImageHelper(undefined, {image: image});
+    let html = simpleImageHelper(undefined, { image: image });
     expect(html.string).to.equal('<img class="" src="/foo" width="100" height="200">');
 
-    html = simpleImageHelper(undefined, {image: image, classes: 'bar'});
+    html = simpleImageHelper(undefined, { image: image, classes: 'bar' });
     expect(html.string).to.equal('<img class="bar" src="/foo" width="100" height="200">');
   });
 });

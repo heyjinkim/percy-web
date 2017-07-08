@@ -6,24 +6,28 @@ export default DS.Model.extend({
   state: DS.attr(),
   width: DS.attr('number'),
 
-  headSnapshot: DS.belongsTo('snapshot', {async: false}),
-  baseSnapshot: DS.belongsTo('snapshot', {async: false}),
+  headSnapshot: DS.belongsTo('snapshot', { async: false }),
+  baseSnapshot: DS.belongsTo('snapshot', { async: false }),
 
   // If headScreenshot is null, the comparison was removed (compared to the base build).
-  headScreenshot: DS.belongsTo('snapshot', {async: false}),
+  headScreenshot: DS.belongsTo('snapshot', { async: false }),
   // If baseScreenshot is null, the comparison was added and is new (compared to the base build).
-  baseScreenshot: DS.belongsTo('snapshot', {async: false}),
+  baseScreenshot: DS.belongsTo('snapshot', { async: false }),
   // If pdiff is set, both headScreenshot and baseScreenshot are guaranteed to exist.
-  pdiff: DS.belongsTo('pdiff', {async: false}),
+  pdiff: DS.belongsTo('pdiff', { async: false }),
 
   startedProcessingAt: DS.attr('date'),
   finishedProcessingAt: DS.attr('date'),
-  processingDurationSeconds: Ember.computed('startedProcessingAt', 'finishedProcessingAt', function() {
-    var finished = this.get('finishedProcessingAt');
-    var started = this.get('startedProcessingAt');
-    var milliseconds = moment(finished).diff(started);
-    return milliseconds / 1000;
-  }),
+  processingDurationSeconds: Ember.computed(
+    'startedProcessingAt',
+    'finishedProcessingAt',
+    function() {
+      var finished = this.get('finishedProcessingAt');
+      var started = this.get('startedProcessingAt');
+      var milliseconds = moment(finished).diff(started);
+      return milliseconds / 1000;
+    }
+  ),
   createdAt: DS.attr('date'),
   updatedAt: DS.attr('date'),
 

@@ -1,5 +1,5 @@
 import moment from 'moment';
-import {Factory, trait} from 'ember-cli-mirage';
+import { Factory, trait } from 'ember-cli-mirage';
 
 export default Factory.extend({
   name(i) {
@@ -11,7 +11,7 @@ export default Factory.extend({
 
   afterCreate(organization, server) {
     if (!organization.subscription) {
-      server.create('subscription', {organization: organization});
+      server.create('subscription', { organization: organization });
     }
   },
 
@@ -23,20 +23,20 @@ export default Factory.extend({
         trialEnd: moment().add(14, 'days').add(1, 'hour'),
         plan: server.create('plan', 'trial'),
       });
-    }
+    },
   }),
 
   withUser: trait({
     afterCreate(organization, server) {
       let user = server.create('user');
-      server.create('organizationUser', {user, organization, role: 'member'});
-    }
+      server.create('organizationUser', { user, organization, role: 'member' });
+    },
   }),
 
   withAdminUser: trait({
     afterCreate(organization, server) {
       let user = server.create('user');
-      server.create('organizationUser', {user, organization, role: 'admin'});
-    }
+      server.create('organizationUser', { user, organization, role: 'admin' });
+    },
   }),
 });

@@ -1,6 +1,6 @@
 import Ember from 'ember';
 import config from 'percy-web/config/environment';
-import {task, timeout} from 'ember-concurrency';
+import { task, timeout } from 'ember-concurrency';
 
 const POLLING_INTERVAL_SECONDS = 3;
 const MAX_UPDATE_POLLING_REQUESTS = 2000;
@@ -21,11 +21,11 @@ export default Ember.Component.extend({
   startPollingForUpdates: function() {
     this.set('runningTask', this.get('pollForUpdatesTask').perform());
   },
-  pollForUpdatesTask: task(function * () {
+  pollForUpdatesTask: task(function*() {
     this.set('numPollRequests', 0);
     while (this.get('numPollRequests') < MAX_UPDATE_POLLING_REQUESTS) {
       this.incrementProperty('numPollRequests');
-      this.get('organization').reload().then((organization) => {
+      this.get('organization').reload().then(organization => {
         let githubIntegration = organization.get('githubIntegration');
         let githubIntegrationRequest = organization.get('githubIntegrationRequest');
 
@@ -45,9 +45,7 @@ export default Ember.Component.extend({
   }),
 
   classNames: ['OrganizationsGithubIntegrator'],
-  classNameBindings: [
-    'classes',
-  ],
+  classNameBindings: ['classes'],
   actions: {
     cancelIntegrationRequest() {
       let integrationRequest = this.get('organization.githubIntegrationRequest');
@@ -59,15 +57,22 @@ export default Ember.Component.extend({
       // Open popup. :|
       let width = 1100;
       let height = 900;
-      let left = (screen.width / 2) - (width / 2);
-      let top = (screen.height / 2) - (height / 2);
+      let left = screen.width / 2 - width / 2;
+      let top = screen.height / 2 - height / 2;
       let url = this.get('githubIntegrationUrl');
       window.open(
         url,
         '_blank',
         'toolbar=yes, location=yes, directories=no, status=no, menubar=no, scrollbars=yes, ' +
-        'resizable=yes, copyhistory=yes, ' +
-        'width=' + width + ', height=' + height + ', top=' + top + ', left=' + left
+          'resizable=yes, copyhistory=yes, ' +
+          'width=' +
+          width +
+          ', height=' +
+          height +
+          ', top=' +
+          top +
+          ', left=' +
+          left
       );
 
       let organization = this.get('organization');
@@ -83,6 +88,6 @@ export default Ember.Component.extend({
     },
     showSupport() {
       this.sendAction('showSupport');
-    }
-  }
+    },
+  },
 });

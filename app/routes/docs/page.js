@@ -19,7 +19,7 @@ export default Ember.Route.extend(ResetScrollMixin, {
     });
 
     return Ember.RSVP.hash({
-      docPath: `/docs/${params.path}`,  // TODO(fotinakis): make more dynamic?
+      docPath: `/docs/${params.path}`, // TODO(fotinakis): make more dynamic?
       navMarkdown: Ember.get(percyDocs.markdownFiles, 'nav'),
       pageMarkdown: anchoredMarkdown,
       pageTitle: pageTitle,
@@ -30,7 +30,7 @@ export default Ember.Route.extend(ResetScrollMixin, {
       this._super(...arguments);
 
       let model = this.modelFor(this.routeName);
-      this.analytics.track('Docs Page Viewed', null, {path: model.docPath});
+      this.analytics.track('Docs Page Viewed', null, { path: model.docPath });
     },
   },
 });

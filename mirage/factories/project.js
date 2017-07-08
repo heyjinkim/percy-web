@@ -1,4 +1,4 @@
-import {Factory} from 'ember-cli-mirage';
+import { Factory } from 'ember-cli-mirage';
 
 export default Factory.extend({
   isEnabled: true,
@@ -10,5 +10,5 @@ export default Factory.extend({
   },
   fullSlug() {
     return `${this.organization.slug}/${this.slug}`;
-  }
+  },
 });

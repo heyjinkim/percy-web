@@ -1,5 +1,5 @@
 import moment from 'moment';
-import {Factory} from 'ember-cli-mirage';
+import { Factory } from 'ember-cli-mirage';
 
 export default Factory.extend({
   billingEmail(i) {
@@ -15,7 +15,7 @@ export default Factory.extend({
   afterCreate(subscription, server) {
     if (!subscription.plan) {
       let plan = server.create('plan');
-      subscription.update({plan});
+      subscription.update({ plan });
     }
   },
 });

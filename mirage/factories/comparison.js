@@ -1,4 +1,4 @@
-import {Factory, trait} from 'ember-cli-mirage';
+import { Factory, trait } from 'ember-cli-mirage';
 import moment from 'moment';
 
 export default Factory.extend({
@@ -28,25 +28,25 @@ export default Factory.extend({
   }),
 
   mobile: trait({
-    includeMobileVersion: true
+    includeMobileVersion: true,
   }),
 
   gotLonger: trait({
     includePdiff: 'longer',
-    includeHeadScreenshot: 'longer'
+    includeHeadScreenshot: 'longer',
   }),
 
   gotShorter: trait({
     includePdiff: 'longer',
-    includeBaseScreenshot: 'longer'
+    includeBaseScreenshot: 'longer',
   }),
 
   same: trait({
     includePdiff: false,
     afterCreate(comparison, server) {
-      let pdiff = server.create('pdiff', {diffRatio: 0.0});
-      comparison.update({pdiff});
-    }
+      let pdiff = server.create('pdiff', { diffRatio: 0.0 });
+      comparison.update({ pdiff });
+    },
   }),
 
   // TODO: this needs a complete rewrite to be much simpler, potentially with explicit comparison
@@ -57,28 +57,33 @@ export default Factory.extend({
       width: 1280,
       height: 1485,
       postfix: '',
-      pdiff: {width: 1280, height: 1485, ratio: 0.42, postfix: ''},
-      lossy: {width: 900, height: 1044, postfix: ''},
+      pdiff: { width: 1280, height: 1485, ratio: 0.42, postfix: '' },
+      lossy: { width: 900, height: 1044, postfix: '' },
       longer: {
         prefix: 'bs',
         postfix: '',
         width: 1280,
         height: 1814,
-        pdiff: {width: 1280, height: 1814, ratio: 0.62, postfix: '-longer'},
-        lossy: {width: 900, height: 1275, postfix: '-longer'}
-      }
+        pdiff: { width: 1280, height: 1814, ratio: 0.62, postfix: '-longer' },
+        lossy: { width: 900, height: 1275, postfix: '-longer' },
+      },
     };
     if (comparison.includeMobileVersion) {
       settings.prefix = 'bs-mobile';
       settings.width = 320;
       settings.height = 1598;
-      settings.pdiff = {width: 320, height: 1598, ratio: 0.32, postfix: ''};
+      settings.pdiff = { width: 320, height: 1598, ratio: 0.32, postfix: '' };
       settings.lossy = settings.pdiff;
       settings.longer.prefix = 'bs-mobile';
       settings.longer.postfix = '-longer';
       settings.longer.width = 320;
       settings.longer.height = 2757;
-      settings.longer.pdiff = {width: 320, height: 2757, ratio: 0.72, postfix: '-longer'};
+      settings.longer.pdiff = {
+        width: 320,
+        height: 2757,
+        ratio: 0.72,
+        postfix: '-longer',
+      };
       settings.longer.lossy = settings.longer.pdiff;
     }
     if (comparison.pdiff === null && comparison.includePdiff) {
@@ -88,12 +93,19 @@ export default Factory.extend({
       }
       let diffImage = server.create('image', {
         url: `/images/test/${settings.prefix}-pdiff-base-head${pdiffSettings.postfix}.png`,
-        width: pdiffSettings.width, height: pdiffSettings.height
+        width: pdiffSettings.width,
+        height: pdiffSettings.height,
       });
-      let pdiff = server.create('pdiff', {diffRatio: pdiffSettings.ratio, diffImage});
-      comparison.update({pdiff});
+      let pdiff = server.create('pdiff', {
+        diffRatio: pdiffSettings.ratio,
+        diffImage,
+      });
+      comparison.update({ pdiff });
     }
-    if (comparison.baseScreenshot === null && comparison.includeBaseScreenshot) {
+    if (
+      comparison.baseScreenshot === null &&
+      comparison.includeBaseScreenshot
+    ) {
       let lossy = settings.lossy;
       let lossless = settings;
       let variant = 'base';
@@ -104,16 +116,21 @@ export default Factory.extend({
       }
       let image = server.create('image', {
         url: `/images/test/${lossless.prefix}-${variant}${lossless.postfix}.png`,
-        width: lossless.width, height: lossless.height
+        width: lossless.width,
+        height: lossless.height,
       });
       let lossyImage = server.create('image', {
         url: `/images/test/${settings.prefix}-${variant}${lossy.postfix}-lossy.jpg`,
-        width: lossy.width, height: lossy.height
+        width: lossy.width,
+        height: lossy.height,
       });
-      let baseScreenshot = server.create('screenshot', {image, lossyImage});
-      comparison.update({baseScreenshot});
+      let baseScreenshot = server.create('screenshot', { image, lossyImage });
+      comparison.update({ baseScreenshot });
     }
-    if (comparison.headScreenshot === null && comparison.includeHeadScreenshot) {
+    if (
+      comparison.headScreenshot === null &&
+      comparison.includeHeadScreenshot
+    ) {
       let lossy = settings.lossy;
       let lossless = settings;
       let variant = 'head';
@@ -126,22 +143,26 @@ export default Factory.extend({
       }
       let image = server.create('image', {
         url: `/images/test/${settings.prefix}-${variant}${lossy.postfix}.png`,
-        width: lossless.width, height: lossless.height
+        width: lossless.width,
+        height: lossless.height,
       });
       let lossyImage = server.create('image', {
         url: `/images/test/${settings.prefix}-${variant}${lossy.postfix}-lossy.jpg`,
-        width: lossy.width, height: lossy.height
+        width: lossy.width,
+        height: lossy.height,
       });
-      let headScreenshot = server.create('screenshot', {image, lossyImage});
-      comparison.update({headScreenshot});
+      let headScreenshot = server.create('screenshot', { image, lossyImage });
+      comparison.update({ headScreenshot });
       if (comparison.headSnapshot === null) {
         let headSnapshot = server.create('snapshot');
-        comparison.update({headScreenshot, headSnapshot});
+        comparison.update({ headScreenshot, headSnapshot });
       }
     }
-    if (comparison.width === undefined &&
-          (comparison.includeHeadScreenshot || comparison.includeBaseScreenshot)) {
-      comparison.update({width: settings.width});
+    if (
+      comparison.width === undefined &&
+      (comparison.includeHeadScreenshot || comparison.includeBaseScreenshot)
+    ) {
+      comparison.update({ width: settings.width });
     }
 
     // Remove transient attributes.
@@ -151,5 +172,5 @@ export default Factory.extend({
       includeHeadScreenshot: undefined,
       includeMobileVersion: undefined,
     });
-  }
+  },
 });

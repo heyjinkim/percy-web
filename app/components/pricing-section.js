@@ -17,7 +17,7 @@ export default Ember.Component.extend({
       this.set('showJumpToBilling', false);
     },
     login() {
-      utils.redirectToLogin({redirectTo: '/organizations/new'});
+      utils.redirectToLogin({ redirectTo: '/organizations/new' });
     },
     showSupport() {
       this.sendAction('showSupport');

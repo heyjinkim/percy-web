@@ -17,19 +17,19 @@ export default Ember.Service.extend({
     let amplitudeConfigurationOptions = {
       includeUtm: true,
       includeReferrer: true,
-      includeGclid: true
+      includeGclid: true,
     };
 
-    this.userInstance = window.amplitude
-      .getInstance(config.APP.AMPLITUDE_USERS_INSTANCE_NAME);
+    this.userInstance = window.amplitude.getInstance(config.APP.AMPLITUDE_USERS_INSTANCE_NAME);
     this.userInstance.init(
       config.APP.AMPLITUDE_USERS_PROJECT_ID,
       null,
       amplitudeConfigurationOptions
     );
 
-    this.organizationInstance = window.amplitude
-      .getInstance(config.APP.AMPLITUDE_ORGANIZATIONS_INSTANCE_NAME);
+    this.organizationInstance = window.amplitude.getInstance(
+      config.APP.AMPLITUDE_ORGANIZATIONS_INSTANCE_NAME
+    );
     this.organizationInstance.init(
       config.APP.AMPLITUDE_ORGANIZATIONS_PROJECT_ID,
       null,
@@ -61,7 +61,7 @@ export default Ember.Service.extend({
     let userProperties = {
       login: user.get('login'),
       email: user.get('email'),
-      name: user.get('name')
+      name: user.get('name'),
     };
 
     this.userInstance.setUserId(user.get('id'));
@@ -79,8 +79,8 @@ export default Ember.Service.extend({
     if (organization) {
       userEventProperties = Object.assign(
         {
-          'organization_id': organization.get('id'),
-          'organization_slug': organization.get('slug'),
+          organization_id: organization.get('id'),
+          organization_slug: organization.get('slug'),
         },
         eventProperties
       );
@@ -93,7 +93,7 @@ export default Ember.Service.extend({
     if (organization) {
       this.organizationInstance.setUserId(organization.get('id'));
       let organizationEventProperties = Object.assign(
-        {'user_id': this.get('currentUser.id')},
+        { user_id: this.get('currentUser.id') },
         eventProperties
       );
       this.organizationInstance.logEvent(eventName, organizationEventProperties);

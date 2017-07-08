@@ -3,8 +3,8 @@ import DS from 'ember-data';
 import moment from 'moment';
 
 export default DS.Model.extend({
-  project: DS.belongsTo('project', {async: false}),
-  repo: DS.belongsTo('repo', {async: false}),
+  project: DS.belongsTo('project', { async: false }),
+  repo: DS.belongsTo('repo', { async: false }),
 
   // Check isGithubLinked before accessing repo.
   isGithubLinked: Ember.computed.bool('repo'),
@@ -35,18 +35,18 @@ export default DS.Model.extend({
     }
   }),
 
-  commit: DS.belongsTo('commit', {async: false}),  // Might be null.
-  baseBuild: DS.belongsTo('build', {async: false, inverse: null}),
-  comparisons: DS.hasMany('comparison', {async: true}),
+  commit: DS.belongsTo('commit', { async: false }), // Might be null.
+  baseBuild: DS.belongsTo('build', { async: false, inverse: null }),
+  comparisons: DS.hasMany('comparison', { async: true }),
 
   snapshots: Ember.computed('comparisons', function() {
     let comparisons = this.get('comparisons');
-    let snapshots = comparisons.map((comparison) => comparison.get('headSnapshot')).filter(x => x);
+    let snapshots = comparisons.map(comparison => comparison.get('headSnapshot')).filter(x => x);
     return [...new Set(snapshots)];
   }),
 
   comparisonWidths: Ember.computed('comparisons', function() {
-    let widths = [...new Set(this.get('comparisons').map((c) => c.get('width')))];
+    let widths = [...new Set(this.get('comparisons').map(c => c.get('width')))];
     return widths.sort((a, b) => a - b);
   }),
 
@@ -62,7 +62,7 @@ export default DS.Model.extend({
     if (!this.get('isFinished')) {
       return false;
     }
-    return (this.get('totalComparisonsDiff') > 0);
+    return this.get('totalComparisonsDiff') > 0;
   }),
 
   isPullRequest: DS.attr('boolean'),
@@ -71,7 +71,7 @@ export default DS.Model.extend({
 
   finishedAt: DS.attr('date'),
   approvedAt: DS.attr('date'),
-  approvedBy: DS.belongsTo('user', {async: false}),
+  approvedBy: DS.belongsTo('user', { async: false }),
   createdAt: DS.attr('date'),
   updatedAt: DS.attr('date'),
 
@@ -101,6 +101,6 @@ export default DS.Model.extend({
   }),
 
   reloadAll() {
-    this.store.findRecord('build', this.get('id'), {reload: true});
+    this.store.findRecord('build', this.get('id'), { reload: true });
   },
 });
