@@ -13,7 +13,6 @@ export default Ember.Component.extend({
   session: Ember.inject.service(),
   currentUser: Ember.computed.alias('session.data.authenticated.user'),
 
-  waitingForInstallation: false,
   currentIntegration: Ember.computed.alias('organization.githubIntegration'),
   githubIntegrationUrl: config.APP.githubUrls.integration,
 
@@ -55,7 +54,7 @@ export default Ember.Component.extend({
       integrationRequest.destroyRecord();
       this.get('runningTask').cancel();
     },
-    triggerWaitingForInstallation() {
+    triggerInstallation() {
       let url = this.get('githubIntegrationUrl');
       let organization = this.get('organization');
       let githubIntegrationRequest = this.get('store').createRecord('github-integration-request', {
