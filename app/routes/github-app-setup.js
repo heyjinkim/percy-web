@@ -47,7 +47,6 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
           this.replaceWith('organization.index', organization.get('slug'));
         }
       });
-
     });
   },
 });
