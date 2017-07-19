@@ -136,9 +136,6 @@ describe('Acceptance: Build', function() {
       expect(currentPath()).to.equal('organization.project.builds.build.index');
     });
     percySnapshot(this.test.fullTitle() + ' on the build page');
-
-    //click('.BuildModePicker button');
-    //percySnapshot(this.test.fullTitle() + ' in overview mode');
   });
 
   it('toggles the image and pdiff', function() {

@@ -1,22 +1,26 @@
 .NavMenu
+  padding: 0px 5px
+
   .NavMenu-item
     display: inline-block
+    float: left
+    padding: 10px 5px
 
     a
-      line-height: 4.3rem
-      float: left
-      display: block
-      padding: 10px 17px
+      padding: 0px 5px
+
+  .NavMenu-item-title
+    font-size: 16px
+
+  .NavMenu-item--text
+    line-height: 4rem
 
   .NavMenu-item--right
     float: right
 
+  .NavMenu-item--left
+    padding-left: 10px
+
   .NavMenu-avatar
     padding: 11px 11px
     float: right
-
-
-@media (max-width: 750px)
-  .NavMenu
-    .NavMenu-item a
-      padding: 10px 5px
