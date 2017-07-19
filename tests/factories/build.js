@@ -28,5 +28,11 @@ FactoryGuy.define('build', {
     missingResources: {failureReason: 'missing_resources'},
     noSnapshots: {failureReason: 'no_snapshots'},
     renderTimeout: {failureReason: 'render_timeout'},
+    hasPullRequest: {
+      isPullRequest: 'true',
+      pullRequestNumber: '123',
+      pullRequestTitle: 'New Build Header Design',
+    },
+    isGithubLinked: {repo: FactoryGuy.belongsTo('repo', 'percyWeb')}
   }
 });
