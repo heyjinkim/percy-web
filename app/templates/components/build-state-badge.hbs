@@ -3,7 +3,7 @@
 {{else if build.isProcessing}}
   Processing
 {{else if build.isFinished}}
-  {{#if build.isFinished}}
+  {{#if build.isApproved}}
     Approved
   {{else}}
     {{#if build.hasDiffs}}
