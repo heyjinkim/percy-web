@@ -14,7 +14,7 @@
     <h3>{{build.buildTitle}}</h3>
     <table>
       <tr>
-        <td>Started</td>
+        <td>Created</td>
         <td>{{build-started build=build}}</td>
       </tr>
       <tr>
@@ -22,55 +22,27 @@
         <td>{{build-duration build=build}}</td>
       </tr>
       <tr>
-        <td>Head</td>
-        <td>
-          <code>{{build.branch}}</code> @ 
-          {{#if build.isGithubLinked}}
-            <a href="{{build.repo.htmlUrl}}/commit/{{build.commit.sha}}">{{build.commit.shaShort}}</a>
-          {{else}}
-            {{build.commit.shaShort}}
-          {{/if}}
-        </td>
-      </tr>
-      <tr>
-        <td>Baseline</td>
-        <td>
-          <code>{{build.baseBuild.branch}}</code>
-          @ 
-          {{#if build.isGithubLinked}}
-            <a href="{{build.baseBuild.repo.htmlUrl}}/commit/{{build.baseBuild.commit.sha}}">{{build.commit.shaShort}}</a>
-          {{else}}
-            {{build.baseBuild.commit.shaShort}}
-          {{/if}}
-        </td>
-      </tr>
-      <tr>
         <td>Baseline build</td>
         <td>{{build-comparison-info build=build}}</td>
       </tr>
-      <tr>
-        <td>User agent</td>
-        <td><pre>Percy/v1 ember-percy/1.2.13 percy-js/2.1.3 (ember/2.13.3; ember-cli/2.13.3; node/v6.11.0; circle)</pre></td>
+      <tr class='BuildInfoDropdown-fullWidthLabel'>
+        <td colspan='2'>User agent</td>
+      </tr>
+      <tr class='BuildInfoDropdown-fullWidthValue'>
+        <td colspan='2'><pre>Percy/v1 ember-percy/1.2.13 percy-js/2.1.3 (ember/2.13.3; ember-cli/2.13.3; node/v6.11.0; circle)</pre></td>
       </tr>
     </table>
 
     {{#if build.commit}}
       <hr/>
-      <h3>Commit Info</h3>
-      <table>
-        <tr>
-          <td>Commit</td>
-          <td>
-            {{#if build.isGithubLinked}}
-              <a href="{{build.repo.htmlUrl}}/commit/{{build.commit.sha}}">{{build.commit.shaShort}}</a>
-            {{else}}
-              {{build.commit.shaShort}}
-            {{/if}}
-          </td>
-        </tr>
-        <tr><td>Committer</td><td>{{build.commit.authorName}}</td></tr>
-        <tr><td>Message</td><td>{{build.commit.message}}</td></tr>
-      </table>
+      <h4>Head commit</h4>
+      {{commit-table build=build commit=build.commit}}
+    {{/if}}
+
+    {{#if build.baseBuild.commit}}
+      <hr/>
+      <h4>Base commit</h4>
+      {{commit-table build=build.baseBuild commit=build.baseBuild.commit}}
     {{/if}}
   {{/modal-dialog}}
 {{/if}}

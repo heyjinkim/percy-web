@@ -2,14 +2,21 @@
   background: white
   box-shadow: $modal-shadow
   padding: 20px
-  width: 450px
+  max-width: 450px
+  width: calc(100% - 45px)
 
   .BuildComparisonInfo-label, .BuildComparisonInfo-branch
     display: none
 
-  h3
+  h3, h4
     font-weight: bold
-    font-size: 19px
+    margin-bottom: 5px
+
+  h3
+    font-size: 22px
+
+  h4
+    font-size: 18px
 
   hr
     border: none
@@ -30,8 +37,17 @@
 
       td:first-child
         font-weight: bold
-        width: 120px
+        width: 115px
 
       &:last-child
         td
           border-bottom: none
+
+    .BuildInfoDropdown-fullWidthLabel
+      td
+        border: none
+
+    .BuildInfoDropdown-fullWidthValue
+      td:first-child
+        font-weight: normal
+        padding-top: 0
