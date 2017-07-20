@@ -11,7 +11,7 @@ export default DS.Model.extend({
 
   buildNumber: DS.attr('number'),
   buildTitle: Ember.computed('buildNumber', function() {
-    return `Build ${this.get('buildNumber')}`;
+    return `Build #${this.get('buildNumber')}`;
   }),
   branch: DS.attr(),
 
