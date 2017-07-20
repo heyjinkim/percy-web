@@ -4,7 +4,7 @@
   padding: 20px
   max-width: 450px
   width: calc(100% - 45px)
-  margin-top: 10px
+  margin-top: 9px
 
   .fa-caret-up
     font-size: 4rem
@@ -13,12 +13,18 @@
     right: 18px
     top: -14px
     padding: 1px 5px 0px 5px
-    text-shadow: 0 0 10px rgba(0,0,0,0.3)
-    line-height: 15px
+    text-shadow: 0 0 3px rgba(0,0,0,0.3)
+    line-height: 13px
     overflow: hidden
 
-  .BuildComparisonInfo-label, .BuildComparisonInfo-branch
+  .BuildStateBadge
+    float: right
+
+  .BuildOverviewIcon
     display: none
+
+  .BuildOverviewInfo-prNumber
+    color: $dark-gray
 
   h3, h4
     font-weight: bold

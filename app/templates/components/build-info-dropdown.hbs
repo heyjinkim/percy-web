@@ -12,6 +12,9 @@
                   containerClass="BuildInfoDropdown-modal"
                   build=build}}
     {{fa-icon "caret-up"}}
+
+    {{build-state-badge build=build}}
+
     <h3>{{build.buildTitle}}</h3>
     <table>
       <tr>
@@ -26,6 +29,22 @@
         <td>Baseline build</td>
         <td>{{build-comparison-info build=build}}</td>
       </tr>
+
+      {{#if build.isGithubLinked}}
+        {{#if build.isPullRequest}}
+            <tr>
+              <td>Pull Request</td>
+              <td>
+                {{build-overview-icon icon='pull-request'}}
+                <a href="{{build.repo.htmlUrl}}/pull/{{build.pullRequestNumber}}">{{build.pullRequestTitle}}</a>
+                <span class="BuildOverviewInfo-prNumber">
+                  #{{build.pullRequestNumber}}
+                </span>
+              </td>
+            </tr>
+        {{/if}}
+      {{/if}}
+
       <tr class='BuildInfoDropdown-fullWidthLabel'>
         <td colspan='2'>User agent</td>
       </tr>
