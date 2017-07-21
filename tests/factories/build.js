@@ -11,7 +11,7 @@ FactoryGuy.define('build', {
     branch: 'master',
     createdAt: () => new Date(),
     updatedAt: () => new Date(),
-    headCommit: {commit: FactoryGuy.belongsTo('commit')},
+    commit: {commit: FactoryGuy.belongsTo('commit')},
   },
   traits: {
     longHeadCommitMessage: {commit: FactoryGuy.belongsTo('commit', 'longMessage')},
