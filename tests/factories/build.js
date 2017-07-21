@@ -1,4 +1,5 @@
 import FactoryGuy from 'ember-data-factory-guy';
+import moment from 'moment';
 
 FactoryGuy.define('build', {
   sequences: {
@@ -10,9 +11,16 @@ FactoryGuy.define('build', {
     branch: 'master',
     createdAt: () => new Date(),
     updatedAt: () => new Date(),
+    headCommit: {commit: FactoryGuy.belongsTo('commit')},
   },
   traits: {
-    finished: {state: 'finished'},
+    longHeadCommitMessage: {commit: FactoryGuy.belongsTo('commit', 'longMessage')},
+    longBranch: {branch: 'david_jones/ch699/build-header-qa/super-long-branch-name-here'},
+    baseBuild: {baseBuild: {baseBuild: FactoryGuy.belongsTo('build')}},
+    finished: {
+      state: 'finished',
+      finishedAt: () => moment().add(2, 'minutes').add(31, 'seconds')
+    },
     pending: {state: 'pending'},
     processing: {state: 'processing'},
     failed: {state: 'failed'},
@@ -33,6 +41,6 @@ FactoryGuy.define('build', {
       pullRequestNumber: '123',
       pullRequestTitle: 'New Build Header Design',
     },
-    isGithubLinked: {repo: FactoryGuy.belongsTo('repo', 'percyWeb')}
+    isGithubLinked: {repo: FactoryGuy.belongsTo('repo')}
   }
 });
