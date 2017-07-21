@@ -47,12 +47,14 @@
         {{/if}}
       {{/if}}
 
-      <tr class='BuildInfoDropdown-fullWidthLabel'>
-        <td colspan='2'>User agent</td>
-      </tr>
-      <tr class='BuildInfoDropdown-fullWidthValue'>
-        <td colspan='2'><pre>Percy/v1 ember-percy/1.2.13 percy-js/2.1.3 (ember/2.13.3; ember-cli/2.13.3; node/v6.11.0; circle)</pre></td>
-      </tr>
+      {{#if build.user_agent}}
+        <tr class='BuildInfoDropdown-fullWidthLabel'>
+          <td colspan='2'>User agent</td>
+        </tr>
+        <tr class='BuildInfoDropdown-fullWidthValue'>
+          <td colspan='2'><pre>{{build.user_agent}}</pre></td>
+        </tr>
+      {{/if}}
     </table>
 
     {{#if build.commit}}
