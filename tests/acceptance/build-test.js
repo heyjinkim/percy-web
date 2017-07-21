@@ -30,6 +30,9 @@ describe('Acceptance: Pending Build', function() {
       expect(currentPath()).to.equal('organization.project.builds.build.index');
     });
     percySnapshot(this.test.fullTitle() + ' on the build page');
+
+    click('#BuildInfo');
+    percySnapshot(this.test.fullTitle() + ' on the build page with build info open');
   });
 });
 
@@ -61,6 +64,9 @@ describe('Acceptance: Processing Build', function() {
       expect(currentPath()).to.equal('organization.project.builds.build.index');
     });
     percySnapshot(this.test.fullTitle() + ' on the build page');
+
+    click('#BuildInfo');
+    percySnapshot(this.test.fullTitle() + ' on the build page with build info open');
   });
 });
 
@@ -93,6 +99,9 @@ describe('Acceptance: Failed Build', function() {
       expect(currentPath()).to.equal('organization.project.builds.build.index');
     });
     percySnapshot(this.test.fullTitle() + ' on the build page');
+
+    click('#BuildInfo');
+    percySnapshot(this.test.fullTitle() + ' on the build page with build info open');
   });
 });
 
@@ -136,6 +145,9 @@ describe('Acceptance: Build', function() {
       expect(currentPath()).to.equal('organization.project.builds.build.index');
     });
     percySnapshot(this.test.fullTitle() + ' on the build page');
+
+    click('#BuildInfo');
+    percySnapshot(this.test.fullTitle() + ' on the build page with build info open');
   });
 
   it('toggles the image and pdiff', function() {
