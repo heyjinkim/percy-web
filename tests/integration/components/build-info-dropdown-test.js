@@ -4,7 +4,6 @@ import {beforeEach, it, describe} from 'mocha';
 import {percySnapshot} from 'ember-percy';
 import hbs from 'htmlbars-inline-precompile';
 import {make, manualSetup}  from 'ember-data-factory-guy';
-import Ember from 'ember';
 
 describe('Integration: BuildInfoDropdownComponent', function() {
   setupComponentTest('build-info-dropdown', {

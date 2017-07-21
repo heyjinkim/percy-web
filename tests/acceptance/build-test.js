@@ -1,7 +1,7 @@
-import setupAcceptance, {setupSession} from '../helpers/setup-acceptance';
+import setupAcceptance, {setupSession, moveModalIntoTestContainer}
+  from '../helpers/setup-acceptance';
 import freezeMoment from '../helpers/freeze-moment';
 import moment from 'moment';
-import Ember from 'ember';
 
 describe('Acceptance: Pending Build', function() {
   freezeMoment('2018-05-22');
@@ -33,9 +33,7 @@ describe('Acceptance: Pending Build', function() {
     percySnapshot(this.test.fullTitle() + ' on the build page');
 
     click('#BuildInfo');
-    andThen(() => {
-      Ember.$('#ember-testing').prepend(Ember.$('.BuildInfoDropdown-modal'));
-    });
+    andThen(() => moveModalIntoTestContainer());
 
     percySnapshot(this.test.fullTitle() + ' on the build page with build info open');
   });
@@ -71,6 +69,8 @@ describe('Acceptance: Processing Build', function() {
     percySnapshot(this.test.fullTitle() + ' on the build page');
 
     click('#BuildInfo');
+    andThen(() => moveModalIntoTestContainer());
+
     percySnapshot(this.test.fullTitle() + ' on the build page with build info open');
   });
 });
@@ -106,6 +106,8 @@ describe('Acceptance: Failed Build', function() {
     percySnapshot(this.test.fullTitle() + ' on the build page');
 
     click('#BuildInfo');
+    andThen(() => moveModalIntoTestContainer());
+
     percySnapshot(this.test.fullTitle() + ' on the build page with build info open');
   });
 });
@@ -152,6 +154,8 @@ describe('Acceptance: Build', function() {
     percySnapshot(this.test.fullTitle() + ' on the build page');
 
     click('#BuildInfo');
+    andThen(() => moveModalIntoTestContainer());
+
     percySnapshot(this.test.fullTitle() + ' on the build page with build info open');
   });
 
