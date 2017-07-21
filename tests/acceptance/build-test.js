@@ -1,6 +1,7 @@
 import setupAcceptance, {setupSession} from '../helpers/setup-acceptance';
 import freezeMoment from '../helpers/freeze-moment';
 import moment from 'moment';
+import Ember from 'ember';
 
 describe('Acceptance: Pending Build', function() {
   freezeMoment('2018-05-22');
