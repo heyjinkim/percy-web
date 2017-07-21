@@ -32,6 +32,10 @@ describe('Acceptance: Pending Build', function() {
     percySnapshot(this.test.fullTitle() + ' on the build page');
 
     click('#BuildInfo');
+    andThen(() => {
+      Ember.$('#ember-testing').prepend(Ember.$('.BuildInfoDropdown-modal'));
+    });
+
     percySnapshot(this.test.fullTitle() + ' on the build page with build info open');
   });
 });
