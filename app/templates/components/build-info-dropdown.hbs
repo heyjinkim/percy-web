@@ -34,16 +34,20 @@
 
       {{#if build.isGithubLinked}}
         {{#if build.isPullRequest}}
+          {{#if build.pullRequestTitle}}
             <tr>
               <td>Pull Request</td>
               <td>
                 {{build-overview-icon icon='pull-request'}}
                 <a href="{{build.repo.htmlUrl}}/pull/{{build.pullRequestNumber}}">{{build.pullRequestTitle}}</a>
-                <span class="BuildOverviewInfo-prNumber">
-                  #{{build.pullRequestNumber}}
-                </span>
+                {{#if build.pullRequestNumber}}
+                  <span class="BuildOverviewInfo-prNumber">
+                    #{{build.pullRequestNumber}}
+                  </span>
+                {{/if}}
               </td>
             </tr>
+          {{/if}}
         {{/if}}
       {{/if}}
 
