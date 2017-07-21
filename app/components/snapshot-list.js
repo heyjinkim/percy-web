@@ -105,7 +105,7 @@ export default Ember.Component.extend({
     Ember.$(document).unbind('keydown.snapshots');
   },
   scrollToChild: function(component) {
-    this.get('parentView').$().animate({scrollTop: component.$().get(0).offsetTop - 250}, 0);
+    this.get('parentView').$().animate({scrollTop: component.$().get(0).offsetTop - 70}, 0);
   },
   actions: {
     registerChild(component) {
