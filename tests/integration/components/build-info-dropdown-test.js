@@ -94,6 +94,15 @@ describe('Integration: BuildInfoDropdownComponent', function() {
     percySnapshot(this.test);
   });
 
+  it('renders with a long head commit message with no spaces', function() {
+    let build = make('build', 'finished', 'isGithubLinked', 'baseBuild',
+                     'noSpacesMessageCommitMessage');
+    this.set('build', build);
+
+    this.render(hbs`{{build-info-dropdown build=build isShowingModal=true renderInPlace=true}}`);
+    percySnapshot(this.test);
+  });
+
   it('renders with pull request', function() {
     let build = make('build', 'finished', 'isGithubLinked', 'hasPullRequest');
     this.set('build', build);

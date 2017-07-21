@@ -15,6 +15,7 @@ FactoryGuy.define('build', {
   },
   traits: {
     longHeadCommitMessage: {commit: FactoryGuy.belongsTo('commit', 'longMessage')},
+    noSpacesMessageCommitMessage: {commit: FactoryGuy.belongsTo('commit', 'noSpacesMessage')},
     longBranch: {branch: 'david_jones/ch699/build-header-qa/super-long-branch-name-here'},
     baseBuild: {baseBuild: {baseBuild: FactoryGuy.belongsTo('build')}},
     finished: {

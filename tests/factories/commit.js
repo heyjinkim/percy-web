@@ -14,6 +14,7 @@ FactoryGuy.define('commit', {
   traits: {
     longMessage: {message: 'Add snapshots of width selector, pending builds, and processing builds\
                             .\n\n* Update tests to include width selector in snapshots\n\n* Capture\
-                             snapshots of pending and processing builds'}
+                             snapshots of pending and processing builds'},
+    noSpacesMessage: {message: 'getsentry/sentry@2d3385cf00283cf822a49261e6f38c8cf9003405'}
   }
 });
