@@ -119,7 +119,11 @@ describe('Acceptance: Build', function() {
   setupSession(function(server) {
     let organization = server.create('organization', 'withUser');
     let project = server.create('project', {name: 'finished build', organization});
-    let build = server.create('build', {project, createdAt: moment().subtract(2, 'minutes')});
+    let build = server.create('build', {
+      project,
+      createdAt: moment().subtract(2, 'minutes'),
+      finishedAt: moment().subtract(5, 'seconds')
+    });
     this.comparisons = {
       different: server.create('comparison', {build}),
       gotLonger: server.create('comparison', 'gotLonger', {build}),

@@ -23,12 +23,10 @@
         <td>Created</td>
         <td>{{build-started build=build}}</td>
       </tr>
-      {{#if build.finishedAt}}
-        <tr>
-          <td>Build time</td>
-          <td>{{build-duration build=build}}</td>
-        </tr>
-      {{/if}}
+      <tr>
+        <td>Build time</td>
+        <td>{{build-duration build=build}}</td>
+      </tr>
       <tr>
         <td>Baseline build</td>
         <td>{{build-comparison-info build=build}}</td>
