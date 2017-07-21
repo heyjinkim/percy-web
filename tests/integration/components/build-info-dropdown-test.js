@@ -4,6 +4,7 @@ import {beforeEach, it, describe} from 'mocha';
 import {percySnapshot} from 'ember-percy';
 import hbs from 'htmlbars-inline-precompile';
 import {make, manualSetup}  from 'ember-data-factory-guy';
+import Ember from 'ember';
 
 describe('Integration: BuildInfoDropdownComponent', function() {
   setupComponentTest('build-info-dropdown', {
@@ -18,7 +19,7 @@ describe('Integration: BuildInfoDropdownComponent', function() {
     let build = make('build', 'pending');
     this.set('build', build);
 
-    this.render(hbs`{{build-info-dropdown build=build isShowingModal=true}}`);
+    this.render(hbs`{{build-info-dropdown build=build isShowingModal=true renderInPlace=true}}`);
     percySnapshot(this.test);
   });
 
@@ -26,7 +27,7 @@ describe('Integration: BuildInfoDropdownComponent', function() {
     let build = make('build', 'processing');
     this.set('build', build);
 
-    this.render(hbs`{{build-info-dropdown build=build}}`);
+    this.render(hbs`{{build-info-dropdown build=build isShowingModal=true renderInPlace=true}}`);
     percySnapshot(this.test);
   });
 
@@ -34,7 +35,7 @@ describe('Integration: BuildInfoDropdownComponent', function() {
     let build = make('build', 'finished', 'hasDiffs');
     this.set('build', build);
 
-    this.render(hbs`{{build-info-dropdown build=build}}`);
+    this.render(hbs`{{build-info-dropdown build=build isShowingModal=true renderInPlace=true}}`);
     percySnapshot(this.test);
   });
 
@@ -42,7 +43,7 @@ describe('Integration: BuildInfoDropdownComponent', function() {
     let build = make('build', 'finished', 'noDiffs');
     this.set('build', build);
 
-    this.render(hbs`{{build-info-dropdown build=build}}`);
+    this.render(hbs`{{build-info-dropdown build=build isShowingModal=true renderInPlace=true}}`);
     percySnapshot(this.test);
   });
 
@@ -50,7 +51,7 @@ describe('Integration: BuildInfoDropdownComponent', function() {
     let build = make('build', 'failed', 'missingResources');
     this.set('build', build);
 
-    this.render(hbs`{{build-info-dropdown build=build}}`);
+    this.render(hbs`{{build-info-dropdown build=build isShowingModal=true renderInPlace=true}}`);
     percySnapshot(this.test);
   });
 
@@ -58,7 +59,7 @@ describe('Integration: BuildInfoDropdownComponent', function() {
     let build = make('build', 'failed', 'noSnapshots');
     this.set('build', build);
 
-    this.render(hbs`{{build-info-dropdown build=build}}`);
+    this.render(hbs`{{build-info-dropdown build=build isShowingModal=true renderInPlace=true}}`);
     percySnapshot(this.test);
   });
 
@@ -66,7 +67,7 @@ describe('Integration: BuildInfoDropdownComponent', function() {
     let build = make('build', 'failed', 'renderTimeout');
     this.set('build', build);
 
-    this.render(hbs`{{build-info-dropdown build=build}}`);
+    this.render(hbs`{{build-info-dropdown build=build isShowingModal=true renderInPlace=true}}`);
     percySnapshot(this.test);
   });
 
@@ -74,7 +75,7 @@ describe('Integration: BuildInfoDropdownComponent', function() {
     let build = make('build', 'expired');
     this.set('build', build);
 
-    this.render(hbs`{{build-info-dropdown build=build}}`);
+    this.render(hbs`{{build-info-dropdown build=build isShowingModal=true renderInPlace=true}}`);
     percySnapshot(this.test);
   });
 
